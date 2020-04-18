@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+<html>
+	<style type="text/css">
+	
+		.statics{
+			padding: 20px; 
+		}
+
+		h1{
+			text-decoration: underline;
+			margin-bottom:  40px;
+		}
+		
+		.statics b:after{
+				content: ' : ';
+				color: blue;
+				font-weight: 900;
+			}
+		
+	/*d64161*/
+	</style>
+	<head>
+		<title>ANASAYFA</title>
+		 
+		<link rel="shortcut icon" type="text/css" href="./public/icon.png">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" type="text/css" href="./public/head.css">
+		<link rel="stylesheet" type="text/css" href="./public/common.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		
+		<%- header %>
+			
+			
+
+			<div class="statics">
+				<center><h1><i>DÜNYA</i> CORONA İSTAİSTİKLERİ</h1></center>
+				<br>
+				<b>TOPLAM VAKA SAYISI</b> <%= totalCases %> <br>
+				<b>ETKİN VAKA SAYISI</b> <%= activeCases %> <br>
+				<b>TOPLAM ÖLÜ SAYISI</b> <%= totalDeaths %> <br>
+				<b>TOPLAM İYİLEŞEN SAYISI</b> <%= Recovered %> <br>
+				
+			</div>
+			
+	</body>
+</html>
+
+

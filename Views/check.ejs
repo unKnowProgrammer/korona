@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= c.country.toUpperCase() %></title>
+		<meta name = "viewport" content="width=device-width , user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="/public/head.css">
+		<link rel="stylesheet" type="text/css" href="/public/common.css">
+		<style type="text/css">
+			
+
+			.flag{
+				width: 100%;
+			}
+
+			.head{
+				text-align: center;
+			}
+
+			
+
+			.static{
+				padding: 20px;
+			}
+
+			.static b:after{
+				content: ' : ';
+				color: blue;
+				font-weight: 900;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<%- header %>
+
+		
+		<h1 class="head"> <%= c.country.toUpperCase() %> Corona <br> İstatistikleri </h1>
+		
+		<div class="static">
+			
+
+			<b>TOPLAM VAKA SAYISI</b> <%= c.totalCases %> <br>
+			<b>ETKİN VAKA SAYISI</b> <%= c.activeCases %> <br>
+			<b>TOPLAM ÖLÜ SAYISI</b> <%= c.totalDeaths %> <br>
+			<!-- <b>TOPLAM TEST SAYISI</b> <%= c.tests %> <br> -->
+			<b>TOPLAM İYİLEŞEN SAYISI</b> <%= c.totalRecovered %> <br>
+			<br><hr color = "red" size="3"><br>
+			<b>BUGÜNKÜ VAKA SAYISI</b> <%= c.newCases %> <br>
+			<b>BUGÜNKÜ ÖLÜ SAYISI</b> <%= c.newDeaths %> <br>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,49 @@
+*{
+	text-decoration: none;
+	font-family: arial;
+}
+
+body{
+	margin: 0;
+}
+
+header{
+			width: 100%;
+			background-color:#c94c4c;
+			color: white;
+			font-weight: 900;
+			font-size: 50px;
+			text-align: center;
+			padding-top: 100px;padding-bottom: 100px; 
+			/*padding: 20px; */
+			
+		}
+
+.menu {
+	background-color: #24252a;
+	padding: 20px;
+	word-spacing: 20px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.menu a{
+	color: white;
+}
+
+@media(max-width: 415px){
+	
+
+
+.menu a{
+
+	font-size: initial;
+}
+
+.menu{
+	padding:10px;
+	text-align: center;
+	line-height: 30px
+}
+
+}
