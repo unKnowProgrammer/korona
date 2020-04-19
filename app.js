@@ -53,7 +53,7 @@ app.set("view engine" , "ejs");
 
 var dataAttach = [];
 var data;
-var news;
+
 var total;
 
 
@@ -140,9 +140,9 @@ app.get("/news" , (req , res) => {
 			authorization: "apikey 49IHyG0NKyBbydz6hZ9YAN:4MnYcl5y7F2G7I6tpYvpVs"
 		}
 	}).then(response => {
-		news = response.data.result;
 		
-		res.render("news" , {news : news , header : header , getDay : getDay});
+		
+		res.render("news" , {news : response.data.result , header : header , getDay : getDay});
 	})
 
 	// res.render("news" , {news : news , header : header});
@@ -154,4 +154,4 @@ app.get("/*" , (req , res) => {
 	res.status(404).send("SAYFA BULUNAMADI...");
 })
 
-app.listen(process.env.PORT);
+app.listen(3000);
