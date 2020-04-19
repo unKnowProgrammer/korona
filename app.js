@@ -154,4 +154,4 @@ app.get("/*" , (req , res) => {
 	res.status(404).send("SAYFA BULUNAMADI...");
 })
 
-app.listen(3000);
+app.listen(process.env.PORT);
