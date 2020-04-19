@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "echo \"TEST\" ",
     "start": "node app.js"
   },
   "keywords": [],
