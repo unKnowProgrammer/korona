@@ -73,7 +73,7 @@ app.get("/" , (req , res) => {
 		}
 	}).then(response => {
 		total = response.data.result;
-		res.render("index" , {
+		res.render("rootIndex" , {
 			totalCases : total.totalCases,
 			totalDeaths : total.totalDeaths,
 			activeCases : total.activeCases,
