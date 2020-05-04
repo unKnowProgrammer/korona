@@ -132,7 +132,7 @@ app.get("/statistics/:country" , (req , res) => {
 				res.render("check" , {c : c   ,header : header})
 			}
 		})
-		if (!f) res.send("ÜLKE BULUNAMADI")
+		// if (!f) res.send("ÜLKE BULUNAMADI")
 	}).catch(err => console.log("CATCHED : "  + err))
 })
 
