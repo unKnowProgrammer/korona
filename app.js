@@ -129,7 +129,7 @@ app.get("/statistics/:country" , (req , res) => {
 		data.forEach(c => {
 			if (setLetter(country) == c.country || country.toUpperCase() == c.country || country == setURL(c.country)) {
 				f = true;
-				res.render("check" , {c : c   ,header : header})
+				render(res , "check" , {c : c   ,header : header})
 			}
 		})
 		if (!f) res.send("ÜLKE BULUNAMADI")
