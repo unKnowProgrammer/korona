@@ -11,6 +11,9 @@ let allow = (req , res , next) => {
 	else res.send("İZİN VERİLMİYOR ...")
 }
 
+console.log("---------------------------")
+console.log(process.env)
+console.log("---------------------------")
 
 app.use(allow)
 
