@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs"); 
 const axios = require("axios")
-
+const ejs = require("ejs");
 let app = express();
 
 
@@ -47,6 +47,12 @@ function setURL(s){
 }
 
 
+function render(responseObject , path , data) {
+	ejs.renderFile("./Views/" + path + ".ejs" , data)
+		.then(r => responseObject.send(r))
+		.catch(e => console.log(e))
+}
+
 app.use("/public" , express.static("public"))
 
 app.set("view engine" , "ejs");
@@ -73,7 +79,7 @@ app.get("/" , (req , res) => {
 		}
 	}).then(response => {
 		total = response.data.result;
-		res.render("rootIndex" , {
+		render(res , "rootIndex" , {
 			totalCases : total.totalCases,
 			totalDeaths : total.totalDeaths,
 			activeCases : total.activeCases,
@@ -102,7 +108,7 @@ app.get("/statistics" , (req ,res) => {
 		}
 	}).then(response => {
 		data = response.data.result
-		res.render("main" , {data : data , url : setURL , header:header})
+		render(res , "main" , {data : data , url : setURL , header:header})
 	})
 
 })
@@ -123,12 +129,11 @@ app.get("/statistics/:country" , (req , res) => {
 		let data = reponse.data.result;
 		data.forEach(c => {
 			if (setLetter(country) == c.country || country.toUpperCase() == c.country || country == setURL(c.country)) {
-				res.render("check" , {c : c   ,header : header})
+				render(res , "check" , {c : c   ,header : header})
 			}
 		})
 	})
 })
-
 
 app.get("/news" , (req , res) => {
 	function getDay(d){
@@ -142,10 +147,10 @@ app.get("/news" , (req , res) => {
 	}).then(response => {
 		
 		
-		res.render("news" , {news : response.data.result , header : header , getDay : getDay});
+		render(res , "news" , {news : response.data.result , header : header , getDay : getDay});
 	})
 
-	// res.render("news" , {news : news , header : header});
+	// res.render(res , "news" , {news : news , header : header});
 })
 
 
@@ -154,4 +159,4 @@ app.get("/*" , (req , res) => {
 	res.status(404).send("SAYFA BULUNAMADI...");
 })
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
