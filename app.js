@@ -132,7 +132,7 @@ app.get("/statistics/:country" , (req , res) => {
 				render(res , "check" , {c : c   ,header : header})
 			}
 		})
-	})
+	}).catch(err => res.send(err))
 })
 
 app.get("/news" , (req , res) => {
