@@ -47,12 +47,6 @@ function setURL(s){
 }
 
 
-function render(responseObject , path , data) {
-	ejs.renderFile("./Views/" + path + ".ejs" , data)
-		.then(r => responseObject.send(r))
-		.catch(e => console.log(e))
-}
-
 app.use("/public" , express.static("public"))
 
 app.set("view engine" , "ejs");
@@ -132,7 +126,7 @@ app.get("/statistics/:country" , (req , res) => {
 				render(res , "check" , {c : c   ,header : header})
 			}
 		})
-	}).catch(err => res.send(err))
+	})
 })
 
 app.get("/news" , (req , res) => {
