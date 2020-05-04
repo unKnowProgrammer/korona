@@ -117,7 +117,6 @@ app.get("/statistics" , (req ,res) => {
 
 
 app.get("/statistics/:country" , (req , res) => {
-	let f;
 	var country = req.params.country;
 	
 	axios.get("https://api.collectapi.com/corona/countriesData" , {
@@ -126,13 +125,14 @@ app.get("/statistics/:country" , (req , res) => {
 		}
 	}).then(reponse => {
 		let data = reponse.data.result;
+		let f;
 		data.forEach(c => {
 			if (setLetter(country) == c.country || country.toUpperCase() == c.country || country == setURL(c.country)) {
 				f = true;
 				res.render("check" , {c : c   ,header : header})
 			}
 		})
-		// if (!f) res.send("ÜLKE BULUNAMADI")
+		if (!f) res.send("ÜLKE BULUNAMADI")
 	}).catch(err => console.log("CATCHED : "  + err))
 })
 
