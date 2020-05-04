@@ -47,6 +47,12 @@ function setURL(s){
 }
 
 
+function render(responseObject , path , data) {
+	ejs.renderFile("./Views/" + path + ".ejs" , data)
+		.then(r => responseObject.send(r))
+		.catch(e => console.log(e))
+}
+
 app.use("/public" , express.static("public"))
 
 app.set("view engine" , "ejs");
@@ -110,9 +116,8 @@ app.get("/statistics" , (req ,res) => {
 
 
 
-
 app.get("/statistics/:country" , (req , res) => {
-
+	let f;
 	var country = req.params.country;
 	
 	axios.get("https://api.collectapi.com/corona/countriesData" , {
@@ -123,11 +128,14 @@ app.get("/statistics/:country" , (req , res) => {
 		let data = reponse.data.result;
 		data.forEach(c => {
 			if (setLetter(country) == c.country || country.toUpperCase() == c.country || country == setURL(c.country)) {
-				render(res , "check" , {c : c   ,header : header})
+				f = true;
+				res.render("check" , {c : c   ,header : header})
 			}
 		})
-	})
+		if (!f) res.send("ÜLKE BULUNAMADI")
+	}).catch(err => console.log("CATCHED : "  + err))
 })
+
 
 app.get("/news" , (req , res) => {
 	function getDay(d){
