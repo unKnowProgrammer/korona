@@ -2,18 +2,16 @@ const express = require("express");
 const fs = require("fs"); 
 const axios = require("axios")
 const ejs = require("ejs");
+const parser = require('ua-parser-js');
 let app = express();
 
 
 let allow = (req , res , next) => {
-	var allow = true;
-	if (allow) next();
-	else res.send("İZİN VERİLMİYOR ...")
+	let ua = parser(req.headers['user-agent'])
+	if (!ua.browser.name || !ua.os.name) res.status(400).send("FAIL")
+	else next();
 }
 
-console.log("---------------------------")
-console.log(process.env)
-console.log("---------------------------")
 
 app.use(allow)
 
@@ -159,6 +157,14 @@ app.get("/news" , (req , res) => {
 })
 
 
+app.post("/log" , (req , res) => {
+	let {path , ip} = req.body;
+	let log = `
+		ip : ${ip}
+		path : ${path}
+	`
+	fs.appendFile(__dirname  + '/logs' , log);
+})
 
 app.get("/*" , (req , res) => {
 	res.status(404).send("SAYFA BULUNAMADI...");
