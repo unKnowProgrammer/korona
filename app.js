@@ -107,7 +107,7 @@ app.get("/" , (req , res) => {
 app.get("/statistics" , (req ,res) => {
 	axios.get("https://api.collectapi.com/corona/countriesData" , {
 		headers : {
-			authorization: "apikey 49IHyG0NKyBbydz6hZ9YAN:4MnYcl5y7F2G7I6tpYvpVs"
+			authorization: "apikey 0Ctx6Fh5yZ84070d8XvedK:7N1ERgOQuQddEdVIzoVLv1"
 		}
 	}).then(response => {
 		data = response.data.result
